@@ -85,7 +85,7 @@ describe('CategoryList', () => {
     render(<CategoryList {...defaultProps()} />);
 
     const editButtons = screen.getAllByLabelText('編集');
-    await user.click(editButtons[0]);
+    await user.click(editButtons[0]!);
     expect(screen.getByPlaceholderText('カテゴリ名')).toHaveValue('仕事');
     expect(screen.getByText('更新')).toBeInTheDocument();
   });
@@ -95,7 +95,7 @@ describe('CategoryList', () => {
     render(<CategoryList {...defaultProps()} />);
 
     const deleteButtons = screen.getAllByLabelText('削除');
-    await user.click(deleteButtons[0]);
+    await user.click(deleteButtons[0]!);
     expect(screen.getByText('このカテゴリを削除しますか？')).toBeInTheDocument();
   });
 

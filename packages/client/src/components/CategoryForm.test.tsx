@@ -50,9 +50,7 @@ describe('CategoryForm', () => {
     await user.click(screen.getByText('追加'));
 
     expect(onSubmit).toHaveBeenCalledOnce();
-    expect(onSubmit).toHaveBeenCalledWith(
-      expect.objectContaining({ name: '買い物' }),
-    );
+    expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ name: '買い物' }));
   });
 
   it('キャンセルボタンをクリックすると onCancel が呼ばれる', async () => {
@@ -73,9 +71,7 @@ describe('CategoryForm', () => {
     await user.click(screen.getByLabelText('色 #ef4444'));
     await user.click(screen.getByText('追加'));
 
-    expect(onSubmit).toHaveBeenCalledWith(
-      expect.objectContaining({ color: '#ef4444' }),
-    );
+    expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ color: '#ef4444' }));
   });
 
   it('プリセットカラーが8色表示される', () => {
