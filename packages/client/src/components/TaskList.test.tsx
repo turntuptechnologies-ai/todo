@@ -31,25 +31,13 @@ const mockTasks: Task[] = [
 
 describe('TaskList', () => {
   it('タスクがない場合に空メッセージが表示される', () => {
-    render(
-      <TaskList
-        tasks={[]}
-        onToggleComplete={vi.fn()}
-        onEdit={vi.fn()}
-        onDelete={vi.fn()}
-      />,
-    );
+    render(<TaskList tasks={[]} onToggleComplete={vi.fn()} onEdit={vi.fn()} onDelete={vi.fn()} />);
     expect(screen.getByText('タスクがありません')).toBeInTheDocument();
   });
 
   it('タスク一覧が表示される', () => {
     render(
-      <TaskList
-        tasks={mockTasks}
-        onToggleComplete={vi.fn()}
-        onEdit={vi.fn()}
-        onDelete={vi.fn()}
-      />,
+      <TaskList tasks={mockTasks} onToggleComplete={vi.fn()} onEdit={vi.fn()} onDelete={vi.fn()} />,
     );
     expect(screen.getByText('タスク1')).toBeInTheDocument();
     expect(screen.getByText('タスク2')).toBeInTheDocument();
@@ -57,12 +45,7 @@ describe('TaskList', () => {
 
   it('タスクの数だけ TaskItem がレンダリングされる', () => {
     const { container } = render(
-      <TaskList
-        tasks={mockTasks}
-        onToggleComplete={vi.fn()}
-        onEdit={vi.fn()}
-        onDelete={vi.fn()}
-      />,
+      <TaskList tasks={mockTasks} onToggleComplete={vi.fn()} onEdit={vi.fn()} onDelete={vi.fn()} />,
     );
     const items = container.querySelectorAll('.task-item');
     expect(items).toHaveLength(2);

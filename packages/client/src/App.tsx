@@ -46,21 +46,13 @@ function App() {
       {error && <p className="error-message">{error}</p>}
 
       {!showForm && (
-        <button
-          type="button"
-          className="app__add-button"
-          onClick={() => setShowForm(true)}
-        >
+        <button type="button" className="app__add-button" onClick={() => setShowForm(true)}>
           + タスクを追加
         </button>
       )}
 
       {showForm && (
-        <TaskForm
-          editingTask={editingTask}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
+        <TaskForm editingTask={editingTask} onSubmit={handleSubmit} onCancel={handleCancel} />
       )}
 
       {loading ? (

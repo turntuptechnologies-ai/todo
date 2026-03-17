@@ -81,8 +81,6 @@ describe('TaskForm', () => {
     await user.selectOptions(screen.getByLabelText(/優先度/), Priority.HIGH);
     await user.click(screen.getByText('作成'));
 
-    expect(onSubmit).toHaveBeenCalledWith(
-      expect.objectContaining({ priority: Priority.HIGH }),
-    );
+    expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ priority: Priority.HIGH }));
   });
 });

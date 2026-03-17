@@ -20,12 +20,7 @@ const baseTask: Task = {
 describe('TaskItem', () => {
   it('タスクのタイトルが表示される', () => {
     render(
-      <TaskItem
-        task={baseTask}
-        onToggleComplete={vi.fn()}
-        onEdit={vi.fn()}
-        onDelete={vi.fn()}
-      />,
+      <TaskItem task={baseTask} onToggleComplete={vi.fn()} onEdit={vi.fn()} onDelete={vi.fn()} />,
     );
     expect(screen.getByText('テストタスク')).toBeInTheDocument();
   });
@@ -98,12 +93,7 @@ describe('TaskItem', () => {
     const user = userEvent.setup();
     const onEdit = vi.fn();
     render(
-      <TaskItem
-        task={baseTask}
-        onToggleComplete={vi.fn()}
-        onEdit={onEdit}
-        onDelete={vi.fn()}
-      />,
+      <TaskItem task={baseTask} onToggleComplete={vi.fn()} onEdit={onEdit} onDelete={vi.fn()} />,
     );
 
     await user.click(screen.getByText('編集'));
@@ -114,12 +104,7 @@ describe('TaskItem', () => {
     const user = userEvent.setup();
     const onDelete = vi.fn();
     render(
-      <TaskItem
-        task={baseTask}
-        onToggleComplete={vi.fn()}
-        onEdit={vi.fn()}
-        onDelete={onDelete}
-      />,
+      <TaskItem task={baseTask} onToggleComplete={vi.fn()} onEdit={vi.fn()} onDelete={onDelete} />,
     );
 
     await user.click(screen.getByText('削除'));
