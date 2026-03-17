@@ -19,7 +19,7 @@ export function TaskForm({ editingTask, onSubmit, onCancel }: Props) {
       setTitle(editingTask.title);
       setDescription(editingTask.description ?? '');
       setPriority(editingTask.priority);
-      setDueDate(editingTask.dueDate ? editingTask.dueDate.split('T')[0] : '');
+      setDueDate(editingTask.dueDate ? editingTask.dueDate.split('T')[0] ?? '' : '');
     } else {
       setTitle('');
       setDescription('');
