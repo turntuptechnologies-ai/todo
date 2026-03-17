@@ -36,6 +36,14 @@ export function TaskItem({ task, onToggleComplete, onEdit, onDelete }: Props) {
           <span className="task-item__title">{task.title}</span>
         </label>
         <div className="task-item__meta">
+          {task.category && (
+            <span
+              className="task-item__category"
+              style={{ backgroundColor: task.category.color + '20', color: task.category.color }}
+            >
+              {task.category.name}
+            </span>
+          )}
           <span className={priorityClass}>{PRIORITY_LABELS[task.priority]}</span>
           {task.dueDate && (
             <span className="task-item__due-date">{formatDueDate(task.dueDate)}</span>

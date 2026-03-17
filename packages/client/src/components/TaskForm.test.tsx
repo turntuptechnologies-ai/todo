@@ -19,7 +19,7 @@ const editingTask: Task = {
 
 describe('TaskForm', () => {
   it('新規作成モードでフォームが空の状態で表示される', () => {
-    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={vi.fn()} />);
+    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={vi.fn()} categories={[]} />);
 
     expect(screen.getByLabelText(/タイトル/)).toHaveValue('');
     expect(screen.getByLabelText(/説明/)).toHaveValue('');
@@ -28,7 +28,9 @@ describe('TaskForm', () => {
   });
 
   it('編集モードで既存の値がフォームに表示される', () => {
-    render(<TaskForm editingTask={editingTask} onSubmit={vi.fn()} onCancel={vi.fn()} />);
+    render(
+      <TaskForm editingTask={editingTask} onSubmit={vi.fn()} onCancel={vi.fn()} categories={[]} />,
+    );
 
     expect(screen.getByLabelText(/タイトル/)).toHaveValue('既存タスク');
     expect(screen.getByLabelText(/説明/)).toHaveValue('既存の説明');
@@ -37,13 +39,13 @@ describe('TaskForm', () => {
   });
 
   it('タイトルが空の場合は送信ボタンが無効', () => {
-    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={vi.fn()} />);
+    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={vi.fn()} categories={[]} />);
     expect(screen.getByText('作成')).toBeDisabled();
   });
 
   it('タイトルを入力すると送信ボタンが有効になる', async () => {
     const user = userEvent.setup();
-    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={vi.fn()} />);
+    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={vi.fn()} categories={[]} />);
 
     await user.type(screen.getByLabelText(/タイトル/), '新しいタスク');
     expect(screen.getByText('作成')).toBeEnabled();
@@ -52,7 +54,7 @@ describe('TaskForm', () => {
   it('フォーム送信時に onSubmit が呼ばれる', async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();
-    render(<TaskForm editingTask={null} onSubmit={onSubmit} onCancel={vi.fn()} />);
+    render(<TaskForm editingTask={null} onSubmit={onSubmit} onCancel={vi.fn()} categories={[]} />);
 
     await user.type(screen.getByLabelText(/タイトル/), '新しいタスク');
     await user.click(screen.getByText('作成'));
@@ -66,7 +68,7 @@ describe('TaskForm', () => {
   it('キャンセルボタンをクリックすると onCancel が呼ばれる', async () => {
     const user = userEvent.setup();
     const onCancel = vi.fn();
-    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={onCancel} />);
+    render(<TaskForm editingTask={null} onSubmit={vi.fn()} onCancel={onCancel} categories={[]} />);
 
     await user.click(screen.getByText('キャンセル'));
     expect(onCancel).toHaveBeenCalledOnce();
@@ -75,7 +77,7 @@ describe('TaskForm', () => {
   it('優先度を変更できる', async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();
-    render(<TaskForm editingTask={null} onSubmit={onSubmit} onCancel={vi.fn()} />);
+    render(<TaskForm editingTask={null} onSubmit={onSubmit} onCancel={vi.fn()} categories={[]} />);
 
     await user.type(screen.getByLabelText(/タイトル/), 'タスク');
     await user.selectOptions(screen.getByLabelText(/優先度/), Priority.HIGH);
