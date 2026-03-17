@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-import type { Task, CreateTaskInput, UpdateTaskInput } from '@todo/shared';
+import type { Task, CreateTaskInput, UpdateTaskInput, Category } from '@todo/shared';
 import { Priority } from '@todo/shared';
 
 type Props = {
   editingTask: Task | null;
+  categories: Category[];
   onSubmit: (input: CreateTaskInput | UpdateTaskInput) => void;
   onCancel: () => void;
 };
 
-export function TaskForm({ editingTask, onSubmit, onCancel }: Props) {
+export function TaskForm({ editingTask, categories, onSubmit, onCancel }: Props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
   const [dueDate, setDueDate] = useState('');
+  const [categoryId, setCategoryId] = useState('');
 
   useEffect(() => {
     if (editingTask) {
@@ -20,11 +22,13 @@ export function TaskForm({ editingTask, onSubmit, onCancel }: Props) {
       setDescription(editingTask.description ?? '');
       setPriority(editingTask.priority);
       setDueDate(editingTask.dueDate ? (editingTask.dueDate.split('T')[0] ?? '') : '');
+      setCategoryId(editingTask.categoryId ?? '');
     } else {
       setTitle('');
       setDescription('');
       setPriority(Priority.MEDIUM);
       setDueDate('');
+      setCategoryId('');
     }
   }, [editingTask]);
 
@@ -40,6 +44,7 @@ export function TaskForm({ editingTask, onSubmit, onCancel }: Props) {
         description: description.trim() || null,
         priority,
         dueDate: dueDate || null,
+        categoryId: categoryId || null,
       };
       onSubmit(input);
     } else {
@@ -48,6 +53,7 @@ export function TaskForm({ editingTask, onSubmit, onCancel }: Props) {
         ...(description.trim() && { description: description.trim() }),
         priority,
         ...(dueDate && { dueDate }),
+        ...(categoryId && { categoryId }),
       };
       onSubmit(input);
     }
@@ -84,6 +90,25 @@ export function TaskForm({ editingTask, onSubmit, onCancel }: Props) {
       </div>
 
       <div className="task-form__row">
+        <div className="task-form__field">
+          <label className="task-form__label" htmlFor="task-category">
+            カテゴリ
+          </label>
+          <select
+            id="task-category"
+            className="task-form__select"
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
+          >
+            <option value="">なし</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="task-form__field">
           <label className="task-form__label" htmlFor="task-priority">
             優先度

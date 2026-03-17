@@ -1,7 +1,22 @@
 .app {
-  max-width: 640px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+/* レイアウト */
+.app__layout {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.app__sidebar {
+  flex-shrink: 0;
+}
+
+.app__main {
+  flex: 1;
+  min-width: 0;
 }
 
 h1 {
@@ -325,4 +340,272 @@ h1 {
 
 .confirm-dialog__button--confirm:hover {
   background: #b91c1c;
+}
+
+/* サイドバー */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.sidebar__section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+}
+
+/* カテゴリリスト */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.category-list__item-wrapper {
+  position: relative;
+}
+
+.category-list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s;
+}
+
+.category-list__item:hover {
+  background: #f3f4f6;
+}
+
+.category-list__item--active {
+  background: #eff6ff;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.category-list__color {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.category-list__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-list__actions {
+  display: none;
+  gap: 0.125rem;
+  margin-left: auto;
+}
+
+.category-list__item:hover .category-list__actions {
+  display: flex;
+}
+
+.category-list__action-button {
+  padding: 0.125rem 0.25rem;
+  border: none;
+  background: transparent;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  cursor: pointer;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.category-list__action-button:hover {
+  color: #3b82f6;
+  background: #dbeafe;
+}
+
+.category-list__action-button--delete:hover {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.category-list__add-button {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  margin-top: 0.25rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+
+.category-list__add-button:hover {
+  color: #3b82f6;
+}
+
+/* カテゴリフォーム */
+.category-form {
+  padding: 0.5rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  margin: 0.25rem 0;
+}
+
+.category-form__field {
+  margin-bottom: 0.375rem;
+}
+
+.category-form__input {
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  box-sizing: border-box;
+}
+
+.category-form__input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.category-form__colors {
+  display: flex;
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.category-form__color-button {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.15s;
+}
+
+.category-form__color-button:hover {
+  border-color: #9ca3af;
+}
+
+.category-form__color-button--active {
+  border-color: #374151;
+}
+
+.category-form__actions {
+  display: flex;
+  gap: 0.375rem;
+  justify-content: flex-end;
+}
+
+.category-form__button {
+  padding: 0.25rem 0.625rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.category-form__button--cancel {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.category-form__button--cancel:hover {
+  background: #d1d5db;
+}
+
+.category-form__button--submit {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.category-form__button--submit:hover {
+  background: #2563eb;
+}
+
+.category-form__button--submit:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* フィルタパネル */
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filter-panel__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-panel__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.filter-panel__select {
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.filter-panel__select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.filter-panel__reset {
+  padding: 0.375rem;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 0.75rem;
+  color: #dc2626;
+  cursor: pointer;
+  text-align: center;
+}
+
+.filter-panel__reset:hover {
+  background: #fef2f2;
+}
+
+/* カテゴリバッジ（タスクアイテム内） */
+.task-item__category {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
 }
