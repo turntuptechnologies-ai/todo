@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: todo-postgres
+    ports:
+      - '${POSTGRES_PORT:-5434}:5432'
+    environment:
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: todo_dev
+      POSTGRES_DB: todo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
