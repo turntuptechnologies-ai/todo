@@ -1,3 +1,6 @@
+> **Note:** このプロジェクトは [claude-md-templates](https://github.com/turntuptechnologies-ai/claude-md-templates) の CLAUDE.md による作例です。
+> CLAUDE.md の設計指針に従い、Agent Teams による並行開発で構築されています。
+
 # todo
 
 シンプルな ToDo 管理 Web アプリケーション。
